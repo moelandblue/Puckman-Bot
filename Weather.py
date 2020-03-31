@@ -11,20 +11,21 @@ from discord.ext import commands
 class Weather(commands.Cog):
 	@commands.command(pass_context=True)
 	async def weather(self, ctx):
-		conditions = json.loads(requests.get("https://api.weather.com/v2/turbo/vt1hourlyForecast?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=42.27%2C-71.80&language=en-US&units=e").text)
-		observations = json.loads(requests.get("https://api.weather.com/v2/turbo/vt1observation?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=42.27%2C-71.80&language=en-US&units=e").text)
+		if ctx.channel.id == int(567179438047887381):
+			conditions = json.loads(requests.get("https://api.weather.com/v2/turbo/vt1hourlyForecast?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=42.27%2C-71.80&language=en-US&units=e").text)
+			observations = json.loads(requests.get("https://api.weather.com/v2/turbo/vt1observation?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=42.27%2C-71.80&language=en-US&units=e").text)
 
-		# Current
-		temperature = observations["vt1observation"]["temperature"]
-		feelsLike = observations["vt1observation"]["feelsLike"]
-		windSpeed = observations["vt1observation"]["windSpeed"]
-		windDirection = observations["vt1observation"]["windDirCompass"]
-		precipChance = observations["vt1observation"]["precip24Hour"]
-		phrase = observations["vt1observation"]["phrase"]
+			# Current
+			temperature = observations["vt1observation"]["temperature"]
+			feelsLike = observations["vt1observation"]["feelsLike"]
+			windSpeed = observations["vt1observation"]["windSpeed"]
+			windDirection = observations["vt1observation"]["windDirCompass"]
+			precipChance = observations["vt1observation"]["precip24Hour"]
+			phrase = observations["vt1observation"]["phrase"]
 
-		# Get precipitation and temperature throughout the day?
+			# Get precipitation and temperature throughout the day?
 
-		await ctx.send(str(phrase) + "\nTemperature: " + str(temperature) + " °F\nFeels Like: " + str(feelsLike) + " °F\nWind Speed: " + str(windSpeed) + " mph " + windDirection)
+			await ctx.send(str(phrase) + "\nTemperature: " + str(temperature) + " °F\nFeels Like: " + str(feelsLike) + " °F\nWind Speed: " + str(windSpeed) + " mph " + windDirection)
 
 	# Forecast
 	@commands.command(pass_context=True)
@@ -32,13 +33,14 @@ class Weather(commands.Cog):
 		"""
 		Sends the weather forecast for tomorrow
 		"""
-		forecast = json.loads(requests.get("https://api.weather.com/v2/turbo/vt1dailyForecast?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=42.27%2C-71.80&language=en-US&units=e").text)
+		if ctx.channel.id == int(567179438047887381):
+			forecast = json.loads(requests.get("https://api.weather.com/v2/turbo/vt1dailyForecast?apiKey=d522aa97197fd864d36b418f39ebb323&format=json&geocode=42.27%2C-71.80&language=en-US&units=e").text)
 
-		dayOfWeek = forecast["vt1dailyForecast"]["dayOfWeek"][1]
-		temperature = forecast["vt1dailyForecast"]["day"]["temperature"][1]
-		precipChance = forecast["vt1dailyForecast"]["day"]["precipPct"][1]
-		phrase = forecast["vt1dailyForecast"]["day"]["phrase"][1]
-		await ctx.send(str(dayOfWeek) + "\n" + str(phrase) + "\nTemperature: " + str(temperature) + " °F\nPrecipitation Chance: " + str(precipChance) + "%")
+			dayOfWeek = forecast["vt1dailyForecast"]["dayOfWeek"][1]
+			temperature = forecast["vt1dailyForecast"]["day"]["temperature"][1]
+			precipChance = forecast["vt1dailyForecast"]["day"]["precipPct"][1]
+			phrase = forecast["vt1dailyForecast"]["day"]["phrase"][1]
+			await ctx.send(str(dayOfWeek) + "\n" + str(phrase) + "\nTemperature: " + str(temperature) + " °F\nPrecipitation Chance: " + str(precipChance) + "%")
 
 	# @commands.command(pass_context=True)
 	# async def test(self, ctx):

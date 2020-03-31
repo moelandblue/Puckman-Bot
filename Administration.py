@@ -57,7 +57,7 @@ class Administration(commands.Cog):
 	async def echo(self, ctx, arg1, *, arg2):
 		channel = ctx.guild.get_channel(int(arg1[2:-1]))
 
-		if channel is not None:
+		if channel is not None and ctx.message.author.guild_permissions.administrator:
 			await channel.send(arg2)
 
 	async def update_guilds(self):

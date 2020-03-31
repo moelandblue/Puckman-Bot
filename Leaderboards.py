@@ -347,24 +347,25 @@ class Leaderboards(commands.Cog):
 		"""
 		Sends the quotes leaderboard
 		"""
+		if ctx.channel.id == int(567179438047887381):
 
-		await self.leaderboard(ctx, "quotes")
+			await self.leaderboard(ctx, "quotes")
 
 	@commands.command(pass_context=True, name="messages")
 	async def messages(self, ctx):
 		"""
 		Sends the messages leaderboard
 		"""
-
-		await self.leaderboard(ctx, "messages")
+		if ctx.channel.id == int(567179438047887381):
+			await self.leaderboard(ctx, "messages")
 
 	@commands.command(pass_context=True, name="reactions")
 	async def reactions(self, ctx):
 		"""
 		Sends the reactions leaderboard
 		"""
-
-		await self.leaderboard(ctx, "reactions")
+		if ctx.channel.id == int(567179438047887381):
+			await self.leaderboard(ctx, "reactions")
 
 	@commands.command(pass_context=True, name="set")
 	async def set_quote_channel(self, ctx):
