@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">Puckman Bot</h3>
-<p align="center">Discord bot created for the (unofficial) WPI Discord Server<p>
+<p align="center">Discord bot created for the (unofficial) RPI Discord Server<p>
 
 ---
 
