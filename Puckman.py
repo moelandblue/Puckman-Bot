@@ -60,7 +60,7 @@ async def help(ctx):
 	"""
 
 	helpEmbed = discord.Embed(title="Puckman Bot", colour=discord.Colour.red())
-	helpEmbed.add_field(name="Documentation", value="https://samuelcurrid.github.io/Puckman-Bot/documentation.html")
+	helpEmbed.add_field(name="Documentation", value="https://moelandblue.github.io/Puckman-Bot/documentation.html")
 	helpEmbed.set_thumbnail(url="https://raw.githubusercontent.com/moelandblue/Puckman-Bot/master/assets/puckman.png")
 	helpEmbed.set_footer(text="Source: https://github.com/moelandblue/Puckman-Bot")
 
