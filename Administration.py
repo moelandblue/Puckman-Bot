@@ -40,10 +40,27 @@ class Administration(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message(self, message):
 		if not message.author.bot:
-			print(message.content)
+			m = message.content.lower()
+
+			if "wpi" in m:
+				await message.channel.send("*RPI")
+			elif "shut up" in m or "fuck you" in m and "puckman" in m:
+				await message.channel.send("Hey >:(")
+			elif "I love" in m and "puckman" in m:
+				await message.content.send("I love you to ;)")
+			elif "I hate" in m and "puckman" in m:
+				await message.content.send("Hate is a strong word.")
+			elif "puckman" in m:
+				await message.channel.send(":wave:")
+
+	@commands.command(pass_context=True)
+	async def echo(self, ctx, arg1, *, arg2):
+		channel = ctx.guild.get_channel(int(arg1[2:-1]))
+
+		if channel is not None:
+			await channel.send(arg2)
 
 	async def update_guilds(self):
-
 		savedGuilds = []
 		for guildID in self.logs["guildSettings"]:
 			savedGuilds.append(int(guildID))
@@ -65,7 +82,6 @@ class Administration(commands.Cog):
 				self.logs["guildSettings"].pop(str(guildID))
 
 		await self.update_state()
-
 
 	@commands.Cog.listener()
 	async def on_member_update(self, before, after):
